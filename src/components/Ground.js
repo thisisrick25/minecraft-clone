@@ -5,7 +5,7 @@ import { useStore } from "../hooks/useStore"
 export const Ground = () => {
     const [ref] = usePlane(() => ({
         rotation: [-Math.PI / 2, 0, 0],
-        position: [0, 0, 0]
+        position: [0, -0.5, 0]
     }))
 
     const [addCube] = useStore((state) => [state.addCube])
@@ -16,7 +16,7 @@ export const Ground = () => {
         <mesh
             onClick={(e) => {
                 e.stopPropagation()
-                const [x, y, z] = Object.values(e.point).map((v) => Math.round(v))
+                const [x, y, z] = Object.values(e.point).map((v) => Math.ceil(v))
                 addCube(x, y, z)
             }}
             ref={ref}>
